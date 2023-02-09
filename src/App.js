@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React   from 'react'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 
-function App() {
+import Blog from './Blog';
+import Single from './Single';
+import Shared from './Shared';
+import Create from './Create';
+
+
+
+
+const App = () => {
+
+  const  router  =  createBrowserRouter(
+    createRoutesFromElements(
+        <Route  path="/"  element={<Shared />}>
+        <Route index element={<Blog/>} />
+        <Route  path="/:blogId"  element={<Single />}/>
+        <Route path="/create" element={<Create/>} />
+        </Route>
+    )
+  )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <RouterProvider router={router}/>
+  )
 }
 
-export default App;
+/**
+ * 
+ * 
+ * fetch  fucntion
+ * axios 
+ * useSWR 
+ * React query
+ * asychronize js , async await, then catch, try catch
+ * 
+ */
+
+export default App
